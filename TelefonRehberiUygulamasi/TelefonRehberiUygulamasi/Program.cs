@@ -87,4 +87,25 @@ namespace TelefonRehberiUygulamasi
             set { _TelNumber = value; }
         }
     }
+    class Action : BasePerson//Islemleri yapacak olan metodlari tutan ve Base clasindaki propertyleri kullanabilmek icin miras alan classimiz.
+    {
+        /* public int Control(List<BasePerson> basePeople)//isim,soyisim,numaraya gore arama yapan ve kisi bulunursa indexini donduren yoksa -1 donduren metodumuz.
+         { }*/
+
+        public void SaveNumber(List<BasePerson> basePeople)//yeni numara kaydetme islemi yapan metod.
+        {
+        }
+        public void DeleteNumber(List<BasePerson> basePeople)//numara silme islemi yapacak olan metod
+        {
+        }
+        public void UpdateNumber(List<BasePerson> basePeople)//numara guncelleme yapacak olan metod.
+        {
+        }
+        public void TelDirectory(List<BasePerson> basePeople)//rehberi listeleyecek olan metod.
+        {
+        }
+        public void TelDirectorySearch(List<BasePerson> basePeople)//rehberde arama yapan metod.
+        {
+        }
+    }
 }
