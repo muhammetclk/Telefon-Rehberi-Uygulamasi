@@ -179,12 +179,75 @@ namespace TelefonRehberiUygulamasi
         }
         public void UpdateNumber(List<BasePerson> basePeople)//numara guncelleme yapacak olan metod.
         {
+            while (true)//islemi donguye sokacak olan while yapisi
+            {
+                Console.WriteLine("Please enter the name or last name or Telnumber of the person whose number you want to update:");
+                int inComingValue = Control(basePeople);//guncellenecek ismin kontrolu yapilacak ve indexini getirecek Control metod cagrimi.
+                if (inComingValue != -1)//gelen deger -1 degilse kisi bulunmustur ve burasi calisir.
+                {
+                    Console.WriteLine("Do you approve " + basePeople[inComingValue].FirstName + basePeople[inComingValue].LastName + " to be updated from the directory?(y/n)");
+                    Console.Write("Process:");//bulunan kisinin guncellenmesinin onay islemi.
+                    char Process = Convert.ToChar(Console.ReadLine());
+                    if (Process == 'y' || Process == 'Y')//eger y girilirse guncelleme islemi gerceklesir ve ana menuye doner.
+                    {
+                        Console.Write("Enter the new number:");
+                        basePeople[inComingValue].TelNumber = Console.ReadLine();//kisinin yeni numarasi girilecek.
+                        Console.WriteLine("Updated...");
+                        break;
+                    }
+                    else if (Process == 'n' || Process == 'N')//eger n girilise guncelleme iptal olur ve ana menuye doner.
+                    {
+                        Console.WriteLine("Returns to main menu ");
+                        continue;
+                    }
+                    else//eger yanlis karakter girilirse hata verir ve ana menuye doner.
+                    {
+                        Console.WriteLine("Wrong character..." + "\nReturns to main menu");
+                        break;
+                    }
+                }
+                else//gelen deger -1 ise burasi calisir.
+                {
+                    Console.WriteLine("Data not found.Please select the process to you want to do");//kisi bulunamadi.
+                    Console.WriteLine("End the update:(1)\n" + "Try again:(2)");
+                    Console.Write("Process:");//islem secimi yap.
+                    int Process = Convert.ToInt32(Console.ReadLine());
+                    if (Process == 1)//1 icin guncelleme islemi iptal olur ve ana menuye doner.
+                    {
+                        Console.WriteLine("Returns to main menu...");
+                        break;
+                    }
+                    else if (Process == 2)//2 icin guncelleme tekrar denenir.
+                        continue;
+                    else//1 veya 2 disinda bir karakter girilmesi durumunda hata verir ve ana menuye doner.
+                    {
+                        Console.WriteLine("Wrong character..." + "\nReturns to main menu");
+                        break;
+                    }
+                }
+            }
         }
         public void TelDirectory(List<BasePerson> basePeople)//rehberi listeleyecek olan metod.
         {
+            Console.WriteLine("Phone Directory");
+            foreach (var basePerson in basePeople)//rehberi kerana bastiriir.
+            {
+                Console.WriteLine("FirstName:" + basePerson.FirstName);
+                Console.WriteLine("LastName:" + basePerson.LastName);
+                Console.WriteLine("TelNumber:" + basePerson.TelNumber);
+            }
         }
         public void TelDirectorySearch(List<BasePerson> basePeople)//rehberde arama yapan metod.
         {
+            Console.WriteLine("Enter a first name or last name or number to search in the directory:");
+            int inComingValue = Control(basePeople);//aranan kisinin indexini dondurur .
+            if (inComingValue != -1)//gelen deger -1 degilse kisi bulunmustur.
+            {
+                for (; inComingValue < basePeople.Count; inComingValue++)//aranan kisinin en ustte oldugu ve sonrasinda diger numaralarin geldigi dongu yapisi.
+                    Console.WriteLine("FirstName: " + basePeople[inComingValue].FirstName + "\nLastName:" + basePeople[inComingValue].LastName + "\nTelNumber:" + basePeople[inComingValue].TelNumber);
+            }
+            else//kisi bulunmassa burasi calisir ve ana menuye doner.
+                Console.WriteLine("Number not found");
         }
     }
 }
