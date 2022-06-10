@@ -146,7 +146,7 @@ namespace TelefonRehberiUygulamasi
                     else if (Process == 'n' || Process == 'N')//eger n girilirse silme iptal olur ve ana menuye doner.
                     {
                         Console.WriteLine("Returns to main menu ");
-                        continue;
+                        break;
                     }
                     else
                     {
