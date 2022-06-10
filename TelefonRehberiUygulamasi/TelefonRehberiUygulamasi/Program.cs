@@ -17,6 +17,52 @@ namespace TelefonRehberiUygulamasi
                 new BasePerson() { FirstName = "Mesut", LastName = "Ozil", TelNumber ="12345678933"},
                 new BasePerson() { FirstName = "Ferdi", LastName = "Kadioglu", TelNumber ="12345678944"}
             };
+            Action action = new Action();//yeni numara ekleme,silme,guncelleme,rehberi listeleme,rehberde arama yapma islmelerini yapacagimiz nesne.
+            bool Control = true;//false olmasi durumunda, programi bitiricek degisken tanimi.
+            try//programda hata olmasi durumunda calisacak try catch yapisi.
+            {
+                do//do while yapisinin baslangici.
+                {
+                    Console.WriteLine("Please select the process to you want to do:");//yapilacak islemler
+                    Console.WriteLine("1-Saving a new number");
+                    Console.WriteLine("2-Delete exiting number");
+                    Console.WriteLine("3-Update exiting number");
+                    Console.WriteLine("4-List the directory");
+                    Console.WriteLine("5-Search the directory");
+                    Console.WriteLine("6-Exit");
+                    Console.Write("Process:");
+                    string Process = Console.ReadLine();//hangi islemi yapacaginin girisi
+                    switch (Process)
+                    {
+                        case "1":
+                            action.SaveNumber(basePeople);//numara kaydetme islemi yapacak metodun cagrilmasi(BasePeople tipinde parametre istiyor.)
+                            break;
+                        case "2":
+                            action.DeleteNumber(basePeople);//numara silme islemi yapacak metodun cagrilmasi.
+                            break;
+                        case "3":
+                            action.UpdateNumber(basePeople);//numara guncellemesi yapacak metodun cagrilmasi.
+                            break;
+                        case "4":
+                            action.TelDirectory(basePeople);//rehberi listeleyecek metodun cagrilmasi.
+                            break;
+                        case "5":
+                            action.TelDirectorySearch(basePeople);//rehberde arama yapilacak ve aranan isim en ustte olacak sekilde diger numaralarinda gozuktugu metodun cagrilmasi.
+                            break;
+                        case "6":
+                            Control = false;//islem icin 6 girisi olmasi durumunda kontrol degiskeni false olacak ve programi bitirecek. 
+                            Console.Write("press any key to exit:");
+                            break;
+                        default://1-6 disinda bir karakter girilmesi durumunda calisacak kisim.
+                            Console.WriteLine("Wrong character...Try again");
+                            break;
+                    }
+                } while (Control == true);//Control degiskenini kontrol eden while yapisi.
+            }
+            catch (Exception exception)//hatali karakterler girisi olmasi durumunda hatayi yakalayacak olan ve mesaj yazdiracak olan catch yapisi.
+            {
+                Console.WriteLine(exception.Message);
+            }
             Console.ReadLine();
         }
     }
